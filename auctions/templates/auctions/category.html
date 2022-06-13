@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+
+{% if message %}
+<h4> {{ message }} </h4>
+{% endif %}
+
+<h4> These are the Active Lisitings in {{ categoryInput }} category </h4>
+
+{% if empty %}
+<h4> No results </h4>
+{% else %}
+    {% for product in products %}
+    <img src="{{product.imageLink}}" alt="Goods Image failed to show" >
+    <!-- <a> </a> -->
+
+        <h4><strong>{{product.title}}</strong></h4>
+
+        <h6>{{product.category}}</h6>
+
+        <p>{{product.description}} <br> </p>
+
+        <p>{{product.startingPrice}}$ <br> </p>
+
+        <a href="{% url 'viewListing' product.id %}">View</a>
+    </div>
+
+    <p> Product is listed on {{ product.openTime }} </p>
+    {% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <p>This is CS50W Project 2 e-commerce. You can login to place a bid for the items you want!</p>
+
+
+{% if user.is_authenticated %}
+    <a href="{% url 'activeListing' %}" class="btn btn-primary btn-lg">Active Listings</a>
+    <a href="{% url 'createListing' %}" class="btn btn-success btn-lg">Create Listings</a>
+{% else %}
+    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Register</a>
+    <a href="{% url 'login' %}" class="btn btn-success btn-lg">Login</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div>
+    {% if message %}
+    {{ message }}
+    {% endif %}
+</div>
+
+<h2><strong>Active Listings</strong></h2>
+
+<p>These are the listings</p>
+
+<div class="text-primary">
+    {% if empty %}
+    <br>
+    <h3>No active listings right now</h3>
+    {% else %}
+        {% for product in products %}
+        <img src="{{ product.imageLink}}" alt="Image">
+        <h4 ><strong>Title: {{product.title}}</strong></h4>
+        <h4>Category: {{product.category}}</h4>
+        <h4>Seller : {{product.seller}} </h4>
+        <h4>Starting Price: {{product.startingPrice}}</h4>
+        <a href="{% url 'viewListing' product.id %}"> View the item </a>
+        <h4> The bid is created at  {{product.openTime}}
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

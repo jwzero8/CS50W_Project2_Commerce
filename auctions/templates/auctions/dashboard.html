@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+
+<h4>Dashboard</h2>
+<p>Your watchlist and account information.</p>                                            
+<h4>Username: {{request.user.username}}</h4>
+<br>
+<h4>YOUR WATCHLIST</h4>
+
+    {% if present %}
+        {% for item in product_list %}
+            <a href="{% url 'viewListing' item.id %}">{{item.title}}</a>
+            <h5>Seller : {{item.seller}}</h5>
+            <p>Price : {{item.startingPrice}}</p>
+            <p>Open at: {{item.openTime}}</p>
+
+        {% endfor %}
+    {% else %}
+        <p>No Listings Found</p> 
+
+    {% endif %}
+    </div>
+    <h2>Your successful bids is/are:</h2>
+    {% if not products %}
+        <h3>You did not win any Listings</h3>
+    {% else %}
+        {% for product in products %}
+            <h4><strong>{{product.title}}</strong></h4>
+            <p>CONGRATULATIONS!!! You Won <br> </p>
+            <p>Seller : {{product.seller}} <br> </p>
+            <p>Winner : {{product.winner}} <br> </p>
+            <p>{{product.finalPrice}}$ <br> </p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

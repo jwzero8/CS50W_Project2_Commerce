@@ -1,0 +1,32 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+{% if message %}
+<h4> {{ message }} </h4>
+{% endif %}
+
+<h4> Closed Listings </h4>
+
+{% if empty %}
+<p> No listings available </p>
+
+{% else %}
+
+    {% for product in products %}
+    <div>
+            <h4><strong>{{product.title}}</strong></h4>
+            {% if product.winner == request.user.username %}
+                CONGRATULATIONS!!! You Won 
+            {% endif %}
+
+            <p>Seller : {{product.seller}} </p>
+
+            <p>Winner : {{product.winner}}  </p>
+
+            <p>{{product.winprice}}$ </p>
+    </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
